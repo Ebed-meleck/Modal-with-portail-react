@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import useModal from './modal/Usemodal';
+import Modal from './modal/modal';
+import Hello from './component/hello';
+
 
 function App() {
+  
+  const { isShow: show, toggle: _toggleOpen } = useModal()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h1> Tuto modal </h1>
+      <div className="tuto" >
+        <button
+          className='btn'
+          onClick={_toggleOpen}
         >
-          Learn React
-        </a>
-      </header>
+          Afficher modal
+        </button>
+        <Modal
+          isShow={show}
+          hide={_toggleOpen}
+          title='modal running'
+        >
+          <Hello />
+        </Modal>
+     </div>
     </div>
   );
 }
